@@ -7,12 +7,12 @@ const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
     'Accept' : 'application/json',
-    'Authorization': 'Basic ' + btoa('estate_009876:estate_&^**@')
+    'Authorization': ''
   })
 };
 const httpOption = {
   headers: new HttpHeaders({
-    'Authorization': 'Basic ' + btoa('estate_009876:estate_&^**@')
+    'Authorization': ''
   })
 };
 
