@@ -1,0 +1,67 @@
+<!-- start sidebar menu -->
+<div class="sidebar-container">
+  <div class="sidemenu-container navbar-collapse collapse fixed-menu">
+    <div id="remove-scroll">
+      <ul class="sidemenu page-header-fixed p-t-20" data-keep-expanded="false" data-auto-scroll="true"
+        data-slide-speed="200">
+        <li class="sidebar-toggler-wrapper hide">
+          <div class="sidebar-toggler">
+            <span></span>
+          </div>
+        </li>
+        <li class="sidebar-user-panel">
+          <div class="user-panel">
+            <div class="row">
+              <div class="sidebar-userpic">
+                <img src="assets/img/user.png" class="img-responsive" alt="">
+              </div>
+            </div>
+            <div class="profile-usertitle">
+              <div class="sidebar-userpic-name"> {{admin_login?.admin_fname | titlecase}} {{admin_login?.admin_lname | titlecase}} </div>
+              <div class="profile-usertitle-job">Admin</div>
+            </div>
+
+          </div>
+        </li>
+
+        <li class="nav-item start" [routerLink]="[ '/app/home' ]" routerLinkActive="active">
+          <a class="nav-link nav-toggle">
+            <i class="material-icons">dashboard</i>
+            <span class="title">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item start" [routerLink]="[ '/app/property-list' ]" routerLinkActive="active">
+          <a class="nav-link nav-toggle">
+            <i class="material-icons">dashboard</i>
+            <span class="title">Properties</span>
+          </a>
+        </li>
+        <li class="nav-item start" [routerLink]="[ '/app/booking' ]" routerLinkActive="active">
+          <a class="nav-link nav-toggle">
+            <i class="material-icons">dashboard</i>
+            <span class="title">Bookings</span>
+          </a>
+        </li>
+        <li class="nav-item start" [routerLink]="[ '/app/guest-list' ]" routerLinkActive="active">
+          <a class="nav-link nav-toggle">
+            <i class="material-icons">dashboard</i>
+            <span class="title">Guests</span>
+          </a>
+        </li>
+        <li class="nav-item start" [routerLink]="[ '/app/payment-list' ]" routerLinkActive="active">
+          <a class="nav-link nav-toggle">
+            <i class="material-icons">dashboard</i>
+            <span class="title">Payments</span>
+          </a>
+        </li>
+        <li class="nav-item start" [routerLink]="[ '/app/contact-us' ]" routerLinkActive="active">
+          <a class="nav-link nav-toggle">
+            <i class="material-icons">dashboard</i>
+            <span class="title">Contact Us</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- end sidebar menu -->

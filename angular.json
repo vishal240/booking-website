@@ -13,6 +13,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "sweetalert2"
+            ],
             "outputPath": "dist/booking-website",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -23,7 +26,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css"
             ],
             "scripts": []
           },

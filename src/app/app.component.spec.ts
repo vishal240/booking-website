@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'booking-website'`, () => {
+  it(`should have as title 'booking-admin-angular'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('booking-website');
+    expect(app.title).toEqual('booking-admin-angular');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('booking-website app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('booking-admin-angular app is running!');
   });
 });

@@ -1,0 +1,208 @@
+<div class="breadcrumb-area breadcrumb-padding" style="margin-top: 6.5rem!important;">
+  <div class="container custom-container-one">
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="breadcrumb-contents">
+                  <h4 class="breadcrumb-contents-title"> Checkout Details </h4>
+                  <ul class="breadcrumb-contents-list list-style-none">
+                      <li class="breadcrumb-contents-list-item"> <a routerLink="/"
+                              class="breadcrumb-contents-list-item-link"> Home </a> </li>
+                      <li class="breadcrumb-contents-list-item"> Checkout </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<section class="Checkout-area section-bg-2 ">
+  <div class="container">
+    <div class="row" *ngIf="currentUserRoom.length==0">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <b>Records not found.</b>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="currentUserRoom.length>0">
+        <div class="col-12">
+            <div class="card  card-box shadow">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="table-scrollable">
+                            <table class="table table-hover table-checkable order-column full-width" id="example4">
+                                <thead>
+                                        <tr>
+                                            <th>Room No</th>
+                                            <th>Room Type</th>
+                                            <th>Bed capacity</th>
+                                            <th>Amenities</th>
+                                            <th>Price</th>
+                                            <th>Extra Bed</th>
+                                            <th>Extra Bed Charges</th>
+                                            <th>Total</th>
+                                            <th>Action</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of currentUserRoom; let i=index">
+                                        <td>{{item.room_number}}</td>
+                                        <td>{{item.room_type | titlecase}}</td>
+                                        <td>{{item.room_bedcapacity}}</td>
+                                        <td>
+                                          <span *ngIf="item.amenities">{{item.amenities}}</span>
+                                          <span *ngIf="!item.amenities">N/A</span>
+                                        </td>
+                                        <td>₹ {{item.room_charge}}/-</td>
+                                        <td><input type="number" (change)="addExtraBed($event, i)" value="{{item.extra_bed}}" style="width: 60px;border-style: groove;" min="0"></td>
+                                        <td>₹ {{item.room_extrabedcharge}}/-</td>
+                                        <td>{{getTotalAmount(item.room_charge, item.extra_bed, item.room_extrabedcharge)}}</td>
+                                        <td><i (click)="removeItem(i,item.room_uid)" class="las la-trash"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="Checkout-area section-bg-2 pat-100 pab-100">
+  <div class="container">
+      <div class="row g-4">
+          <div class="col-xl-8 col-lg-7">
+              <div class="checkout-wrapper">
+                  <div class="checkout-single bg-white radius-10">
+                      <h4 class="checkout-title"> Booking Information </h4>
+                      <div class="checkout-contents mt-3">
+                          <div class="checkout-form custom-form">
+                              <form action="#">
+                                  <div class="input-flex-item">
+                                      <div class="single-input mt-4">
+                                          <label class="label-title"> First Name </label>
+                                          <input class="form--control" type="text" name="name"
+                                              placeholder="Type First Name">
+                                      </div>
+                                      <div class="single-input mt-4">
+                                          <label class="label-title"> Last Name </label>
+                                          <input class="form--control" type="text" name="name"
+                                              placeholder="Type Last Name">
+                                      </div>
+                                  </div>
+                                  <div class="input-flex-item">
+                                      <div class="single-input mt-4">
+                                          <label class="label-title"> Mobile Number </label>
+                                          <input class="form--control" id="phone" type="tel"
+                                              placeholder="Type Mobile Number">
+                                      </div>
+                                      <div class="single-input mt-4">
+                                          <label class="label-title"> Email Address </label>
+                                          <input class="form--control" type="text" name="email"
+                                              placeholder="Type Email">
+                                      </div>
+                                  </div>
+                                  <div class="input-flex-item">
+                                      <div class="single-input mt-4">
+                                          <label class="label-title"> Address </label>
+                                          <input class="form--control" type="text" name="address"
+                                              placeholder="Type Address">
+                                      </div>
+                                  </div>
+                                  <div class="single-input mt-4">
+                                      <label class="label-title"> Country </label>
+                                      <div class="banner-location-single-contents-dropdown">
+                                          <select class="js-select">
+                                              <option value="1">India</option>
+                                              <option value="2">Pakistan</option>
+                                              <option value="3">America</option>
+                                              <option value="4">Russia</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="input-flex-item">
+                                      <div class="single-input mt-4">
+                                          <label class="label-title"> City/Town </label>
+                                          <div class="banner-location-single-contents-dropdown">
+                                              <select class="js-select">
+                                                  <option value="1">Mumbai</option>
+                                                  <option value="2">Karachi</option>
+                                                  <option value="3">Washington</option>
+                                                  <option value="4">Mosco</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                      <div class="single-input mt-4">
+                                          <label class="label-title"> Zip Code </label>
+                                          <div class="banner-location-single-contents-dropdown">
+                                              <input class="form--control" type="text" name="email"
+                                              placeholder="452002">
+                                          </div>
+                                      </div>
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+          <div class="col-xl-4 col-lg-5">
+              <div class="sticky-top">
+                  <div class="checkout-widget checkout-widget-padding widget bg-white radius-10">
+                      <div class="checkout-sidebar">
+                          <h4 class="checkout-sidebar-title"> Booking Details </h4>
+                          <div class="checkout-sidebar-contents">
+                              <ul class="checkout-flex-list list-style-none checkout-border-top pt-3 mt-3">
+                                  <li class="list"> <span class="regular"> Checking In </span> <span
+                                          class="strong"> {{searchData.check_in}} </span> </li>
+                                  <li class="list"> <span class="regular"> Checking Out </span> <span
+                                          class="strong"> {{searchData.check_out}} </span> </li>
+                                  <li class="list"> <span class="regular"> Number of Rooms </span> <span
+                                          class="strong"> {{currentUserRoom.length}} </span> </li>
+                                  <li class="list"> <span class="regular"> Total Stay </span> <span
+                                          class="strong"> {{diffDays}} Days </span> </li>
+                                  <li class="list"> <span class="regular"> Number of Person </span> <span
+                                          class="strong"> {{searchData.adults}} Person </span> </li>
+                                  <li class="list"> <span class="regular"> Number of Children </span> <span
+                                          class="strong"> {{searchData.children}} Children </span> </li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="checkout-widget checkout-widget-padding widget bg-white radius-10">
+                      <div class="checkout-sidebar">
+                          <h4 class="checkout-sidebar-title"> Invoice </h4>
+                          <div class="checkout-sidebar-contents">
+                              <ul class="checkout-flex-list list-style-none checkout-border-top pt-3 mt-3">
+                                  <li class="list"> <span class="regular"> Charge </span> <span class="strong">
+                                          ₹{{totalAmount}} </span> </li>
+                                  <li class="list"> <span class="regular"> SGST(5%) </span> <span class="strong">
+                                    {{gstAmount-totalAmount}}/- </span> </li>
+                                  <li class="list"> <span class="regular"> CGST(5%) </span> <span class="strong">
+                                    {{gstAmount-totalAmount}}/- </span> </li>
+                              </ul>
+                              <ul class="checkout-flex-list list-style-none checkout-border-top pt-3 mt-3">
+                                  <li class="list"> <span class="regular"> Total </span> <span
+                                          class="strong color-one fs-20"> ₹{{grandTotal}} </span> </li>
+                              </ul>
+                          </div>
+                          <a routerLink="/home/confirmation">
+                          <button class="btn btn-success px-5 mt-4">Pay Now</button><br></a>
+
+                          <a (click)="cancelBooking()">
+                          <button class="btn btn-sm btn-outline-danger  mt-2 d-block " style="margin-left: auto;">Cancel Booking</button></a>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</section>

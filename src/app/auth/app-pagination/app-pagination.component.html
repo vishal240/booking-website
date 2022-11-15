@@ -1,0 +1,14 @@
+
+<div class="pagination-wrapper">
+    <ul class="pagination-list list-style-none">
+        <li class="pagination-list-item-prev" (click)="onClickPage(activePage - 1)">
+            <a href="javascript:void(0)" class="pagination-list-item-button"> Prev </a>
+        </li>
+        <li class="pagination-list-item" [ngClass]="{'active': activePage === item}" *ngFor="let item of pages" (click)="onClickPage(item)">
+            <a href="javascript:void(0)" class="pagination-list-item-link"> {{item}} </a>
+        </li>
+        <li class="pagination-list-item-next" (click)="onClickPage(activePage + 1)">
+            <a href="javascript:void(0)" class="pagination-list-item-button"> Next </a>
+        </li>
+    </ul>
+</div>

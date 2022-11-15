@@ -1,0 +1,296 @@
+<div class="breadcrumb-area section-bg-2 breadcrumb-padding" style="margin-top: 6.5rem!important;">
+  <div class="container custom-container-one">
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="breadcrumb-contents">
+                  <h4 class="breadcrumb-contents-title"> Room List </h4>
+                  <ul class="breadcrumb-contents-list list-style-none">
+                      <li class="breadcrumb-contents-list-item"> <a routerLink="/"
+                              class="breadcrumb-contents-list-item-link"> Home </a> </li>
+                      <li class="breadcrumb-contents-list-item"> Room </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="responsive-overlay"></div>
+<section class="hotel-list-area section-bg-2 pab-100">
+  <div class="container pt-5">
+
+      <div class="shop-contents-wrapper mt-5">
+          <div class="shop-icon">
+              <div class="shop-icon-sidebar">
+                  <i class="las la-bars"></i>
+              </div>
+          </div>
+          <div class="shop-sidebar-content">
+              <div class="col-xl-12 col-lg-12">
+                  <div class="sticky-top">
+                      <div class="hotel-details-widget hotel-details-widget-padding widget bg-white radius-10">
+                        <form [formGroup]="checkoutForm">
+                          <div class="row">
+                            <div class="col-lg-12 p-t-20">
+                              <div class="form-floating">
+                                <input type="text" class="form-control" #input id="floatingSelectGrid4" placeholder="Search Property" formControlName="property_name"/>
+                                <label for="floatingSelectGrid4">Location <span style="color: red;">*</span></label>
+                                <ul class="list-group" style="position: absolute;z-index: 1;width: 90%;height: 200px;" *ngIf="searchArray.length>0">
+                                  <li class="list-group-item" style="cursor: pointer;" (click)="setAddress(item.property_uid, item.property_name, item.property_address)" *ngFor="let item of searchArray">{{item.property_name | titlecase}}, {{item.property_address | titlecase}}</li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="col-lg-12 p-t-20 mt-3">
+                              <div class="form-floating mb-3">
+                                <input type="text" class="form-control" formControlName="check_in2" id="floatingInput" [minDate]="minDate" bsDatepicker [bsConfig]="bsConfig" placeholder="Check In">
+                                <label for="floatingInput">Check In <span style="color: red;">*</span></label>
+                              </div>
+                            </div>
+                            <div class="col-lg-12 p-t-20">
+                              <div class="form-floating mb-3">
+                                <input type="text" class="form-control" bsDatepicker [bsConfig]="bsConfig" [minDate]="minDate" formControlName="check_out2" id="floatingInput2" placeholder="Check Out">
+                                <label for="floatingInput2">Check Out <span style="color: red;">*</span></label>
+                              </div>
+                            </div>
+                            <div class="col-lg-12 p-t-20">
+                              <div class="form-floating">
+                                <select class="form-select" id="floatingSelectGrid3" formControlName="adults" placeholder="Adult">
+                                  <option value="">Select Person</option>
+                                  <option  value="1">1</option>
+                                  <option  value="2">2</option>
+                                  <option  value="3">3</option>
+                                  <option  value="4">4</option>
+                                  <option  value="5">5</option>
+                                  <option  value="6">6</option>
+                                  <option  value="7">7</option>
+                                </select>
+                                <label for="floatingSelectGrid3">Person <span style="color: red;">*</span></label>
+                              </div>
+                            </div>
+                            <div class="col-lg-12 p-t-20 mt-3">
+                              <div class="form-floating">
+                                <select class="form-select" id="floatingSelectGrid4" formControlName="children">
+                                  <option value="">Select Children</option>
+                                  <option  value="0">0</option>
+                                  <option  value="1">1</option>
+                                  <option  value="2">2</option>
+                                  <option  value="3">3</option>
+                                  <option  value="4">4</option>
+                                  <option  value="5">5</option>
+                                  <option  value="6">6</option>
+                                  <option  value="7">7</option>
+                                </select>
+                                <label for="floatingSelectGrid4">Children <span style="color: red;">*</span></label>
+                              </div>
+                            </div>
+                            <div class="col-lg-12 p-t-20 mt-3">
+                              <div class="banner-location-single-search">
+                                <div class="search-suggestions-wrapper">
+                                    <a (click)="searchCustomer()">
+                                    <div class="search-click-icon">
+                                        <i class="las la-search"></i>
+                                    </div></a>
+                                </div>
+                                <div class="search-suggestion-overlay"></div>
+                            </div>
+                            </div>
+                            </div>
+                        </form>
+                      </div>
+                      <div class="hotel-details-widget widget bg-white radius-10">
+
+
+                  </div>
+              </div>
+          </div>
+          </div>
+          <div class="shop-grid-contents">
+              <div class="grid-list-contents">
+                  <div class="grid-list-contents-flex">
+                      <p class="grid-list-contents-para">  </p>
+                      <div class="grid-list-view">
+                          <ul class="grid-list-view-flex d-flex tabs list-style-none">
+                              <li class="grid-list-view-icons active" data-tab="tab-grid">
+                                  <a href="javascript:void(0)" class="icon"> <i class="las la-border-all"></i>
+                                  </a>
+                              </li>
+                              <li class="grid-list-view-icons" data-tab="tab-list">
+                                  <a href="javascript:void(0)" class="icon"> <i class="las la-bars"></i> </a>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+              <div id="tab-grid" class="tab-content-item active mt-4">
+                <div class="row gy-4" *ngIf="getAllProperty.length==0">
+                  <div class="col-md-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <p>Records not found.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  <div class="row gy-4" *ngIf="getAllProperty.length>0">
+                      <div class="col-md-6" *ngFor="let item of getAllProperty; let i=index">
+                          <div class="hotel-view bg-white radius-20">
+                              <a routerLink="/home/hotel-details/{{item.room_uid}}" *ngIf="item.room_images.length>0" class="hotel-view-thumb hotel-view-grid-thumb bg-image"
+                                  style="background-image: url(https://estate.friendswebsolutions.com/api/uploads/room/{{item.room_images[0].image_name}});">
+                              </a>
+                              <a routerLink="/home/hotel-details/{{item.room_uid}}" *ngIf="item.room_images.length==0" class="hotel-view-thumb hotel-view-grid-thumb bg-image"
+                                style="background-image: url(assets/img/single-page/hotel-grid1.jpg);">
+                            </a>
+                              <div class="hotel-view-contents">
+                                  <div class="hotel-view-contents-header">
+                                      <!-- <span class="hotel-view-contents-review"> <i class="las la-star"></i> 4.5
+                                          <span class="hotel-view-contents-review-count"> (380) </span> </span> -->
+                                      <h3 class="hotel-view-contents-title"> <a routerLink="/home/hotel-details/{{item.room_uid}}">
+                                        {{item.property_name | titlecase}} </a> </h3>
+                                      <div class="hotel-view-contents-location mt-2">
+                                          <span class="hotel-view-contents-location-icon"> <i
+                                                  class="las la-map-marker-alt"></i> </span>
+                                          <span class="hotel-view-contents-location-para"> {{item.property_address | titlecase}} </span>
+                                      </div>
+                                  </div>
+                                  <div class="hotel-view-contents-middle">
+                                      <div class="hotel-view-contents-flex">
+                                          <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip"
+                                              data-bs-placement="top" title="Car Parking" >
+                                              <p *ngIf="item.amenities">Amenities: {{item.amenities}}</p>
+                                              <p *ngIf="!item.amenities">Amenities: N/A</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="hotel-view-contents-bottom">
+                                      <div class="hotel-view-contents-bottom-flex">
+                                          <div class="hotel-view-contents-bottom-contents">
+                                              <h4 class="hotel-view-contents-bottom-title"> ₹{{item.room_charge}} <sub>/Night</sub>
+                                              </h4>
+
+                                          </div>
+                                          <div class="btn-wrapper" *ngIf="!item.isbooked">
+                                              <a (click)="addData(item, i)" class="cmn-btn btn-bg-1 btn-small">
+                                                  Book Now </a>
+                                          </div>
+                                          <div class="btn-wrapper" *ngIf="item.isbooked" routerLink="/home/checkout">
+                                            <a class="cmn-btn btn-bg-1 btn-small">
+                                                Checkout </a>
+                                        </div>
+                                          <div class="btn-wrapper" *ngIf="item.isbooked">
+                                            <div class="banner-location-single-search">
+                                              <div class="search-suggestions-wrapper">
+                                                  <a (click)="removeItem(i,item.room_uid)">
+                                                  <div class="search-click-icon">
+                                                      <i class="las la-trash"></i>
+                                                  </div></a>
+                                              </div>
+                                              <div class="search-suggestion-overlay"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row mt-5">
+                      <div class="col">
+                        <app-pagination [totalRecords]="totalPages" [recordsPerPage]="10"
+                              (onPageChange)="displayActivePage($event)">
+                        </app-pagination>
+                      </div>
+                  </div>
+              </div>
+              <div id="tab-list" class="tab-content-item mt-4">
+                <div class="row gy-4" *ngIf="getAllProperty.length==0">
+                  <div class="col-md-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <p>Records not found.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  <div class="row gy-4" *ngIf="getAllProperty.length>0">
+                      <div class="col-12" *ngFor="let item of getAllProperty; let i=index">
+                          <div class="hotel-view bg-white radius-20">
+                              <div class="hotel-view-flex">
+
+                                  <a routerLink="/home/hotel-details/{{item.room_uid}}" *ngIf="item.room_images.length>0" class="hotel-view-thumb hotel-view-list-thumb bg-image"
+                                    style="background-image: url(https://estate.friendswebsolutions.com/api/uploads/room/{{item.room_images[0].image_name}});">
+                                </a>
+                                <a routerLink="/home/hotel-details/{{item.room_uid}}" *ngIf="item.room_images.length==0" class="hotel-view-thumb hotel-view-list-thumb bg-image"
+                                  style="background-image: url(assets/img/single-page/hotel-grid1.jpg);">
+                              </a>
+                                  <div class="hotel-view-contents">
+                                      <div class="hotel-view-contents-header">
+                                          <div
+                                              class="hotel-view-contents-header-flex d-flex flex-wrap gap-3 align-items-center justify-content-between">
+                                              <span class="hotel-view-contents-review"> <i
+                                                      class="las la-star"></i>  <span
+                                                      class="hotel-view-contents-review-count">  </span>
+                                              </span>
+                                              <div class="btn-wrapper" *ngIf="!item.isbooked">
+                                                <a (click)="addData(item, i)" class="cmn-btn btn-bg-1 btn-small">
+                                                    Book Now </a>
+                                            </div>
+                                            <div class="btn-wrapper" *ngIf="item.isbooked" routerLink="/home/checkout">
+                                              <a class="cmn-btn btn-bg-1 btn-small">
+                                                  Checkout </a>
+                                          </div>
+                                            <div class="btn-wrapper" *ngIf="item.isbooked">
+                                              <div class="banner-location-single-search">
+                                                <div class="search-suggestions-wrapper">
+                                                    <a (click)="removeItem(i,item.room_uid)">
+                                                    <div class="search-click-icon">
+                                                        <i class="las la-trash"></i>
+                                                    </div></a>
+                                                </div>
+                                                <div class="search-suggestion-overlay"></div>
+                                            </div>
+                                          </div>
+                                          </div>
+                                          <h3 class="hotel-view-contents-title"> <a routerLink="/home/hotel-details/{{item.room_uid}}">
+                                            {{item.property_name | titlecase}} </a> </h3>
+                                          <div class="hotel-view-contents-location mt-2">
+                                              <span class="hotel-view-contents-location-icon"> <i
+                                                      class="las la-map-marker-alt"></i> </span>
+                                              <span class="hotel-view-contents-location-para"> {{item.property_address | titlecase}} </span>
+                                          </div>
+                                      </div>
+                                      <div class="hotel-view-contents-middle">
+                                          <div class="hotel-view-contents-flex">
+                                              <div class="hotel-view-contents-icon d-flex gap-1">
+                                                <p *ngIf="item.amenities">Amenities: {{item.amenities}}</p>
+                                                <p *ngIf="!item.amenities">Amenities: N/A</p>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="hotel-view-contents-bottom">
+                                          <div class="hotel-view-contents-bottom-flex">
+                                              <div
+                                                  class="hotel-view-contents-bottom-contents d-flex flex-wrap gap-4 gap-sm-1">
+                                                  <h4 class="hotel-view-contents-bottom-title"> ₹{{item.room_charge}}
+                                                      <sub>/Night</sub> </h4>
+
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row mt-5">
+                    <div class="col">
+                      <app-pagination [totalRecords]="totalPages" [recordsPerPage]="10"
+                            (onPageChange)="displayActivePage($event)">
+                      </app-pagination>
+                    </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
